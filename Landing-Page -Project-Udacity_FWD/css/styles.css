@@ -1,0 +1,297 @@
+
+/* ---- Base Rules ---- */
+body {
+    background: rgb(136,203,171);
+    background: linear-gradient(79deg, rgba(0,193,100,1) 0%, rgba(16,56,199,1) 100%);
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    color: rgb(255, 255, 255);
+}
+
+
+/* Typeography General*/
+h1 {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 3em;
+    margin: 5em 1rem;
+}
+
+@media only screen and (min-width: 35em){
+    h1 {
+        font-size: 7.8em;
+        margin: 2em 4rem 1em;
+    }
+}
+
+h2 {
+    border-bottom: 1px solid #cc1;
+    font-family: 'Oxygen', Sans-Serif;
+    font-size: 3em;
+    color: #fff;
+}
+
+p {
+    line-height: 1.6em;
+    color: #eee;
+}
+
+/* ---- Layout Rules ---- */
+main {
+    margin: 10vh 1em 10vh;
+}
+
+.main-hero {
+    min-height: 40vh;
+    padding-top: 3em;
+}
+
+section {
+    position: relative;
+    min-height: 80vh;
+}
+
+
+
+
+
+/* ---- Module Rules ---- */
+
+/* Navigation Styles*/
+.navbar__menu ul {
+    padding-left: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.navbar__menu li {
+    display: inline-block;
+}
+
+/*changed some styles*/
+.navbar__menu .menu__link {
+    display: block;
+    padding: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(0, 0, 0)   
+}
+
+.navbar__menu .menu__link:hover {
+    background: #333;
+    color: rgb(255, 255, 255);
+    transition: ease 0.3s all;
+}
+
+/* creating styles for the selected van section */
+.navbar__menu .menu__link.selected {
+    background: #333;
+    color: rgb(255, 255, 255);
+    transition: ease 0.3s all;
+}
+
+
+/* Header Styles */
+.page__header {
+    background: #27b2c9;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+/* Footer Styles */
+.page__footer {
+    background: #000;
+    padding: 3em;
+    color: #fff;
+}
+
+.page__footer p{
+    color: #fff;
+}
+
+a.menu__link{
+    font-size: 17px;
+    
+}
+
+
+/* ---- Theme Rules ---- */
+/* Landing Container Styles */
+.landing__container {
+    padding: 1em;
+    text-align: left;
+}
+
+@media only screen and (min-width: 35em){
+    .landing__container {
+        max-width: 50em;
+        padding: 4em;
+    }
+}
+
+section:nth-of-type(even) .landing__container {
+    margin-right: 0;
+    margin-left: auto;
+    text-align: right; 
+}
+
+/* Background Circles */
+/* Note that background circles are created with psuedo elements before and after */
+/* Circles appear to be random do to use of :nth-of-type psuedo class */
+section:nth-of-type(odd) .landing__container::before {
+    content: '';
+    background: rgb(255, 26, 26 , 72%);
+    position: absolute;
+    z-index: -5;
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+section:nth-of-type(even) .landing__container::before {
+    content: '';
+    background: rgb(47, 0, 255);
+    background: linear-gradient(0deg, rgba(255, 6, 6, 0.548) 0%, rgba(21, 248, 13, 0.473) 100%);
+    position: absolute;
+    top: 3em;
+    right: 3em;
+    z-index: -5;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n) .landing__container::after {
+    content: '';
+    background: rgb(255, 0, 0);
+    background: linear-gradient(0deg, rgba(255, 0, 0, 0.1) 0%, rgba(68, 221, 7, 0.322) 100%);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -5;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n + 1) .landing__container::after {
+    content: '';
+    background: rgb(11, 197, 27);
+    background: linear-gradient(0deg, rgba(3, 255, 234, 49%) 0%, rgba(133, 255,  0 ) 100%);
+    position: absolute;
+    right: 20vw;
+    bottom: -5em;
+    z-index: -5;
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+
+/* ---- Theme State Rules ---- */
+/* Section Active Styles */
+/* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
+section.my-active-class {
+    background: rgb(255, 0, 0);
+    background: linear-gradient(328deg, rgba(215, 84, 180, 78%) 0%, rgba(87, 33, 217, 43%) 100%);
+}
+
+section.my-active-class .landing__container::before {
+    opacity: 1;
+    animation: rotate 4s linear 0s infinite forwards;
+}
+
+section.my-active-class .landing__container::after {
+    opacity: 1;
+    animation: rotate 5s linear 0s infinite forwards reverse;
+}
+
+/* Section Active Styles Keyframe Animations */
+@keyframes rotate {
+	from {
+		transform: rotate(0deg)
+		           translate(-1em)
+		           rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg)
+		           translate(-1em) 
+		           rotate(-360deg);
+	}
+}
+
+/* changing sone styles for specific screen width*/
+
+@media only screen and (max-width :600px ) {
+
+.navbar__menu li {
+       
+        margin: -9.5px;
+        text-align: center;
+        padding: -6px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+
+    }
+
+
+    .navbar__menu .menu__link:hover {
+        background: #333;
+        color: #fff;
+        transition: ease 0.3s all;
+        
+        
+    
+    }
+
+    h1 {
+        font-size: 5em;
+        margin: 2em 2rem 1.7em;
+
+}
+
+a.menu__link {
+  
+    margin: 5px;   
+    text-align: center;
+    font-size: 13px;
+    
+     
+}
+
+
+}
+
+
+
+@media only screen and (max-width :376px ) {
+
+   
+        h1 {
+            font-size: 4.5em;
+            margin: 2em 0rem 1em;
+    
+    }
+    
+    a.menu__link {
+      
+        margin: 3px 5px;   
+        text-align: center;
+        font-size: 10px;
+        padding-left: 2px;
+        
+         
+    }
+    
+    
+    }
+    
